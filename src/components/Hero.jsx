@@ -24,7 +24,7 @@ const Hero = () => {
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Galaxy Background */}
       <GalaxyBackground />
-      
+
       {/* Static Background */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900" />
@@ -43,7 +43,7 @@ const Hero = () => {
                   <span className="text-blue-400">Electric</span>
                 </h1>
                 <p className="text-xl md:text-2xl mb-8 text-gray-300 leading-relaxed">
-                  Complete Smart Home Electrical Solutions & Premium Appliances in Kurthaul. Let us know how we can help you.
+                  Complete Home Electrical Solutions & Premium Appliances in Kurthaul. Let us know how we can help you.
                 </p>
               </div>
             </div>
@@ -93,13 +93,13 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Right Side - Smart Home */}
+          {/* Right Side - Home Solutions */}
           <div className="relative">
             <div className="relative w-full max-w-lg mx-auto">
               <div className="relative bg-white bg-opacity-10 backdrop-blur-sm rounded-3xl p-8 border border-white border-opacity-20">
                 {/* House Title */}
                 <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-white mb-2">Smart Home Solutions</h3>
+                  <h3 className="text-2xl font-bold text-white mb-2">Home Solutions</h3>
                   <p className="text-blue-300 text-sm">Complete Electrical Installation & Repair</p>
                 </div>
 
