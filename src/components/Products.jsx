@@ -14,7 +14,7 @@ const Products = () => {
       features: ['Trusted Brand', 'Energy Efficient', 'Affordable Pricing', 'Wide Service Network'],
       appliances: ['Ceiling Fans', 'Water Heaters', 'Mixer Grinders', 'Induction Cooktops'],
       color: '#EF4444',
-      logoClass: 'max-h-32 max-w-96 object-contain w-full' // Much larger Bajaj logo
+      logoClass: 'max-h-48 max-w-144 object-contain w-full' // Much larger Bajaj logo
     },
     {
       id: 2,
@@ -38,7 +38,7 @@ const Products = () => {
       features: ['Heritage Brand', 'Reliable Performance', 'Expert Engineering', 'Long Lasting'],
       appliances: ['Ceiling Fans', 'Water Pumps', 'LED Lighting', 'Geysers'],
       color: '#10B981',
-      logoClass: 'max-h-40 max-w-64 object-contain' // Larger size
+      logoClass: 'max-h-20 max-w-32 object-contain' // Standarad size
     },
     {
       id: 4,
