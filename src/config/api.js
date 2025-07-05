@@ -4,7 +4,7 @@ export const API_CONFIG = {
     BASE_URL: 'https://aitable.ai/fusion/v1',
     DATASHEET_ID: 'dst6h8kvxTSz220Dqb',
     VIEW_ID: 'viwZ1HxaWnNuF',
-    API_TOKEN: '_Paste_Your_API_Token_', // Replace with your actual API token
+    API_TOKEN: 'uskOWO2DXMZ0KiAQhaXiwR1', // Replace with your actual API token
     FIELD_KEY: 'name'
   }
 };
