@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { FiPhone, FiMail, FiMapPin, FiClock, FiSend } from 'react-icons/fi';
+import { FiPhone, FiMail, FiMapPin, FiClock, FiSend, FiCheck, FiX } from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
+import { submitContactForm } from '../config/api';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +11,8 @@ const Contact = () => {
     service: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', or null
 
   const handleChange = (e) => {
     setFormData({
@@ -18,16 +21,32 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      service: '',
-      message: ''
-    });
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      await submitContactForm(formData);
+      setSubmitStatus('success');
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        service: '',
+        message: ''
+      });
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+      
+      // Clear status after 5 seconds
+      setTimeout(() => {
+        setSubmitStatus(null);
+      }, 5000);
+    }
   };
 
   const contactInfo = [
@@ -88,7 +107,8 @@ const Contact = () => {
                     onChange={handleChange}
                     placeholder="Your Name"
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-300"
+                    disabled={isSubmitting}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                   />
                 </div>
                 <div className="relative">
@@ -99,7 +119,8 @@ const Contact = () => {
                     onChange={handleChange}
                     placeholder="Your Email"
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-300"
+                    disabled={isSubmitting}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                   />
                 </div>
               </div>
@@ -112,7 +133,8 @@ const Contact = () => {
                     value={formData.phone}
                     onChange={handleChange}
                     placeholder="Your Phone"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-300"
+                    disabled={isSubmitting}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                   />
                 </div>
                 <div className="relative">
@@ -121,7 +143,8 @@ const Contact = () => {
                     value={formData.service}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-300"
+                    disabled={isSubmitting}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <option value="">Select Service</option>
                     <option value="house-wiring">House Wiring</option>
@@ -142,17 +165,49 @@ const Contact = () => {
                   placeholder="Your Message"
                   rows="5"
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-300 resize-none"
+                  disabled={isSubmitting}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-300 resize-none disabled:opacity-50 disabled:cursor-not-allowed"
                 />
               </div>
+
+              {/* Status Messages */}
+              {submitStatus === 'success' && (
+                <div className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-center space-x-3">
+                  <SafeIcon icon={FiCheck} className="text-green-600 text-xl flex-shrink-0" />
+                  <div>
+                    <p className="text-green-800 font-medium">Message sent successfully!</p>
+                    <p className="text-green-600 text-sm">We'll get back to you within 24 hours.</p>
+                  </div>
+                </div>
+              )}
+
+              {submitStatus === 'error' && (
+                <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-center space-x-3">
+                  <SafeIcon icon={FiX} className="text-red-600 text-xl flex-shrink-0" />
+                  <div>
+                    <p className="text-red-800 font-medium">Failed to send message</p>
+                    <p className="text-red-600 text-sm">Please try again or contact us directly.</p>
+                  </div>
+                </div>
+              )}
 
               <div className="w-full">
                 <button
                   type="submit"
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 px-8 rounded-lg font-semibold text-lg transition-colors duration-300 flex items-center justify-center space-x-2"
+                  disabled={isSubmitting}
+                  className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white py-4 px-8 rounded-lg font-semibold text-lg transition-colors duration-300 flex items-center justify-center space-x-2 disabled:cursor-not-allowed"
                 >
-                  <SafeIcon icon={FiSend} />
-                  <span>Send Message</span>
+                  {isSubmitting ? (
+                    <>
+                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                      <span>Sending...</span>
+                    </>
+                  ) : (
+                    <>
+                      <SafeIcon icon={FiSend} />
+                      <span>Send Message</span>
+                    </>
+                  )}
                 </button>
               </div>
             </form>
