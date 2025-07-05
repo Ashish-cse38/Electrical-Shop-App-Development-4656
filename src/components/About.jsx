@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FiUsers, FiClock, FiShield, FiZap, FiTool, FiHome, FiStar, FiMapPin } from 'react-icons/fi';
+import { FiUsers, FiClock, FiShield, FiZap, FiTool, FiHome, FiStar, FiMapPin, FiPhone, FiMail } from 'react-icons/fi';
 import SafeIcon from '../common/SafeIcon';
 
 const About = () => {
@@ -54,7 +54,7 @@ const About = () => {
   const features = [
     {
       title: 'Licensed & Insured',
-      description: 'Fully licensed electricians with comprehensive insurance coverage for your peace of mind',
+      description: 'Licensed expert electrician that you can rely on and have peace of mind',
       icon: FiShield,
       color: '#10B981'
     },
@@ -89,10 +89,7 @@ const About = () => {
           }
         });
       },
-      {
-        threshold: 0.3,
-        rootMargin: '-50px 0px -50px 0px'
-      }
+      { threshold: 0.3, rootMargin: '-50px 0px -50px 0px' }
     );
 
     timelineRefs.current.forEach((ref) => {
@@ -138,7 +135,11 @@ const About = () => {
                 className="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center"
                 style={{ backgroundColor: `${stat.color}20` }}
               >
-                <SafeIcon icon={stat.icon} className="text-2xl" style={{ color: stat.color }} />
+                <SafeIcon
+                  icon={stat.icon}
+                  className="text-2xl"
+                  style={{ color: stat.color }}
+                />
               </div>
               <div className="text-3xl font-bold text-gray-900 mb-2">
                 {stat.number}
@@ -174,22 +175,18 @@ const About = () => {
                     ? 'opacity-100 transform translate-y-0'
                     : 'opacity-0 transform translate-y-8'
                 }`}
-                style={{
-                  transitionDelay: `${index * 150}ms`
-                }}
+                style={{ transitionDelay: `${index * 150}ms` }}
               >
                 <div className={`w-1/2 ${index % 2 === 0 ? 'pr-8 text-right' : 'pl-8 text-left'}`}>
                   <div
                     className={`bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer transform ${
-                      visibleCards.has(index) 
-                        ? 'scale-100 rotate-0' 
-                        : index % 2 === 0 
-                          ? 'scale-95 rotate-1' 
-                          : 'scale-95 -rotate-1'
+                      visibleCards.has(index)
+                        ? 'scale-100 rotate-0'
+                        : index % 2 === 0
+                        ? 'scale-95 rotate-1'
+                        : 'scale-95 -rotate-1'
                     }`}
-                    style={{
-                      transitionDelay: `${index * 200}ms`
-                    }}
+                    style={{ transitionDelay: `${index * 200}ms` }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.backgroundColor = item.color + '08';
                     }}
@@ -202,7 +199,11 @@ const About = () => {
                         className="w-12 h-12 rounded-full flex items-center justify-center"
                         style={{ backgroundColor: `${item.color}20` }}
                       >
-                        <SafeIcon icon={item.icon} className="text-xl" style={{ color: item.color }} />
+                        <SafeIcon
+                          icon={item.icon}
+                          className="text-xl"
+                          style={{ color: item.color }}
+                        />
                       </div>
                       <div className="text-2xl font-bold" style={{ color: item.color }}>
                         {item.year}
@@ -230,11 +231,12 @@ const About = () => {
         </div>
 
         {/* Features Grid */}
-        <div className="mb-32">
+        <div className="mb-16">
           <div className="text-center mb-12">
             <h3 className="text-4xl font-bold text-gray-900 mb-4">Why Choose Us</h3>
             <p className="text-lg text-gray-600">Excellence in every aspect of our service</p>
           </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {features.map((feature, index) => (
               <div
@@ -252,7 +254,11 @@ const About = () => {
                     className="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0"
                     style={{ backgroundColor: `${feature.color}20` }}
                   >
-                    <SafeIcon icon={feature.icon} className="text-2xl" style={{ color: feature.color }} />
+                    <SafeIcon
+                      icon={feature.icon}
+                      className="text-2xl"
+                      style={{ color: feature.color }}
+                    />
                   </div>
                   <div className="flex-1">
                     <h4 className="text-xl font-bold text-gray-900 mb-3">{feature.title}</h4>
@@ -264,23 +270,38 @@ const About = () => {
           </div>
         </div>
 
-        {/* Call to Action */}
-        <div className="text-center bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-12 text-white">
-          <h3 className="text-3xl font-bold mb-4">Ready to Experience Excellence?</h3>
-          <p className="text-xl mb-8 text-blue-100">
-            Join thousands of satisfied customers who trust us for their electrical needs
-          </p>
-          <button
-            className="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-50 transition-colors duration-300"
-            onClick={() => {
-              const element = document.getElementById('contact');
-              if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
-              }
-            }}
-          >
-            Get Your Free Quote Today
-          </button>
+        {/* Get Your Quote CTA */}
+        <div className="text-center">
+          <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-8 md:p-12 shadow-2xl">
+            <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Get Your Quote Today
+            </h3>
+            <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+              Ready to start your electrical project? Contact us for a free consultation and personalized quote
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+              <a
+                href="tel:+919334539594"
+                className="flex-1 bg-white text-blue-600 hover:bg-blue-50 px-6 py-4 rounded-xl font-semibold transition-colors duration-300 flex items-center justify-center space-x-2"
+              >
+                <SafeIcon icon={FiPhone} className="text-xl" />
+                <span>Call Us</span>
+              </a>
+              
+              <a
+                href="mailto:hello@vishwakarmaelectric.in"
+                className="flex-1 border-2 border-white text-white hover:bg-white hover:text-blue-600 px-6 py-4 rounded-xl font-semibold transition-colors duration-300 flex items-center justify-center space-x-2"
+              >
+                <SafeIcon icon={FiMail} className="text-xl" />
+                <span>Mail Us</span>
+              </a>
+            </div>
+            
+            <div className="mt-6 text-blue-100 text-sm">
+              <p>📞 +91 93345 39594 | ✉️ hello@vishwakarmaelectric.in</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
