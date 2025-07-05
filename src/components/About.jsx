@@ -277,7 +277,7 @@ const About = () => {
               Get Your Quote Today
             </h3>
             <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-              Ready to start your electrical project? Contact us for a free consultation and personalized quote
+              Reach out to us for your electrical work. Contact us for consultation and personalized quote
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
