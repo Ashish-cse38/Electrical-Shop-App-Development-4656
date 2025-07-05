@@ -38,7 +38,7 @@ const Products = () => {
       features: ['Heritage Brand', 'Reliable Performance', 'Expert Engineering', 'Long Lasting'],
       appliances: ['Ceiling Fans', 'Water Pumps', 'LED Lighting', 'Geysers'],
       color: '#10B981',
-      logoClass: 'max-h-20 max-w-32 object-contain' // Standard size
+      logoClass: 'max-h-40 max-w-64 object-contain' // Larger size
     },
     {
       id: 4,
