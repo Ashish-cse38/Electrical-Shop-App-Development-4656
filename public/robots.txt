@@ -1,0 +1,27 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://vishwakarmaelectric.in/sitemap.xml
+
+# Specific pages for better crawling
+Allow: /
+Allow: /services
+Allow: /products
+Allow: /about
+Allow: /contact
+
+# Block common spam/bot directories
+Disallow: /admin/
+Disallow: /wp-admin/
+Disallow: /wp-login.php
+Disallow: /wp-content/
+Disallow: /cgi-bin/
+Disallow: /tmp/
+Disallow: /logs/
+
+# Crawl delay (optional)
+Crawl-delay: 1
+
+# Host directive
+Host: https://vishwakarmaelectric.in
